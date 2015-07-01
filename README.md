@@ -4,8 +4,8 @@ A Python Script to get the information about all your movies as well as their th
 
 Folder Structure:
 
-root:
---movieA(year)
+root/movieA (MovieAYear)
+root/MovieB (MovieBYear)
 
 Using the IMDbPY library, search the IMDB database for movieA and selects the first result as a default (can be changed according to user's wishes). using the movie object, get the data you want and save it in the info.txt in the folder.
 Also download the IMDB thumbnail and store it as folder.jpg in the folder.
