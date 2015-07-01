@@ -8,29 +8,29 @@ import imdb
 import os
 import urllib
 
-def get_immediate_subdirectories(a_dir):
+#Get the subdirectories
+def GetSubdirectories(a_dir):
     return [name for name in os.listdir(a_dir)
             if os.path.isdir(os.path.join(a_dir, name))]
 
-def get_thumbnail(movie,name):
-	#Don=wnload the thumbnail if it doesn't already exist
+#Download the thumbnail if it doesn't already exist
+def GetThumbnail(movie,name):
 	FileName = name+"/folder.jpg"
 	if not os.path.isfile(FileName):
 		urllib.urlretrieve(movie['cover url'], FileName)
 		print name.split("/")[-1] + "'s thumbnail downloaded"
 
+print "Start..."
+
 #Enter the folder
 root = "/media/mithrandir/Entertainment/Theatre/MKOM"
-count = 0
-
-movies = get_immediate_subdirectories(root)
+movies = GetSubdirectories(root)
 
 # Create the object that will be used to access the IMDb's database.
 portal = imdb.IMDb()
 
-flag = 0
-
 for name in movies:
+	print name
 	f = open(os.path.join(root,name)+"/info.txt",'w')
 	flag = 1
 	# Search for a movie (get a list of Movie objects).
@@ -45,7 +45,7 @@ for name in movies:
 	movie = result[0]
 	portal.update(movie)
 
-	get_thumbnail(movie,os.path.join(root,name))
+	GetThumbnail(movie,os.path.join(root,name))
 
 	# Print some information.
 	genres = ""
@@ -69,4 +69,3 @@ for name in movies:
 	f.write("\n\nWriter : " + writers)
 	f.write("\nPlot : " + movie['plot'][0])
 	f.write("\n\nCast : " + cast + "")
-	
