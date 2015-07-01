@@ -32,7 +32,7 @@ portal = imdb.IMDb()
 for name in movies:
 	print name
 	f = open(os.path.join(root,name)+"/info.txt",'w')
-	flag = 1
+	
 	# Search for a movie (get a list of Movie objects).
 	result = portal.search_movie(name)
 	'''
